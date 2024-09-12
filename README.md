@@ -1,2 +1,3 @@
 # gitlab-automation-notification
-Dockerized Gitlab with automatic upgrades and notifications
+
+Scripts d'examples qui accompagnent un billet de blog sur <https://cesar.lizurey.fr> à paraître bientôt.

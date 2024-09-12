@@ -1,0 +1,12 @@
+{
+  "name": "MYSERVER",
+  "gitlab": {
+    "url": "https://gitlab.EXAMPLE.TLD",
+    "token": "abcdef132465" 
+  },
+  "ntfy": {
+    "url": "https://ntfy.EXAMPLE.TLD",
+    "token": "tk_654321fedcba"
+  },
+  "margin": "7"
+}
