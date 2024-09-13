@@ -8,5 +8,8 @@
     "url": "https://ntfy.EXAMPLE.TLD",
     "token": "tk_654321fedcba"
   },
+  "discord": {
+    "webhook": "https://discordapp.com/api/webhooks/987654321/abcdef123456"
+  },
   "margin": "7"
 }
