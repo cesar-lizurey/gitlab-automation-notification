@@ -36,8 +36,8 @@ if [ "$ACTUAL_DIGEST" = "$LATEST_DIGEST" ]; then
     echo "$TIMESTAMP --> Version $GITLAB_VERSION est a jour." >> $SCRIPT_DIR/maj_docker.log
 else
     # Nombre de jours de sécurité avant une mise à jour automatique
-    MARGIN=$(jq -r '.margin' $SCRIPT_DIR/verif_version.conf)
-    DATE_MARGIN=$(date -d "$MARGIN days ago" +%s)
+    DELAY=$(jq -r '.delay' $SCRIPT_DIR/verif_version.conf)
+    DATE_MARGIN=$(date -d "$DELAY days ago" +%s)
     if [ $LATEST_DATE_TIMESTAMP -lt $DATE_MARGIN ]; then
         echo "$TIMESTAMP --> Version latest est plus à jour que la version actuelle $GITLAB_VERSION. On met à jour."
         # On notifie que la mise à jour vers telle version va se faire
@@ -49,6 +49,6 @@ else
         curl -H "Content-Type: application/json" -X POST -d "{\"content\": \":white_check_mark: **MAJ GITLAB**\\n\\nMise à jour effectuée sur la version $LATEST_VERSION.\"}" "$DISCORD_WEBHOOK"
     else
         # On notifie que la version est encore trop récente de X jours
-        curl -H "Title: [$SERVER_NAME] Mise à jour Gitlab" -H "Tags: hourglass" -d "Version $LATEST_VERSION date de moins de $MARGIN jour\(s\)" $NTFY_URL/maj_gitlab -u :$NTFY_TOKEN
+        curl -H "Title: [$SERVER_NAME] Mise à jour Gitlab" -H "Tags: hourglass" -d "Version $LATEST_VERSION date de moins de $DELAY jour\(s\)" $NTFY_URL/maj_gitlab -u :$NTFY_TOKEN
     fi
 fi
