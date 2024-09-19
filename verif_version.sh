@@ -43,9 +43,9 @@ else
         # On notifie que la mise à jour vers telle version va se faire
         curl -H "Title: [$SERVER_NAME] Mise à jour Gitlab" -H "Tags: warning" -d "En cours vers $LATEST_VERSION" $NTFY_URL/maj_gitlab -u :$NTFY_TOKEN
         curl -H "Content-Type: application/json" -X POST -d "{\"content\": \":warning: **MAJ GITLAB** :warning:\\n\\nMise à jour en cours vers la version $LATEST_VERSION.\\n\\nCe processus dure environ 5 minutes, durant lesquelles le Gitlab sera inaccessible. Un nouveau  message sera publié quand la mise à jour est terminée.\"}" "$DISCORD_WEBHOOK"
-        $SCRIPT_DIR/restart_compose_gitlab.sh
+        $SCRIPT_DIR/restart_compose_gitlab.sh && \
         # On notifie que la mise à jour est terminée avec le nouveau numéro de version
-        curl -H "Title: [$SERVER_NAME] Mise à jour Gitlab" -H "Tags: white_check_mark" -d "Version $LATEST_VERSION" $NTFY_URL/maj_gitlab -u :$NTFY_TOKEN
+        curl -H "Title: [$SERVER_NAME] Mise à jour Gitlab" -H "Tags: white_check_mark" -d "Version $LATEST_VERSION" $NTFY_URL/maj_gitlab -u :$NTFY_TOKEN && \
         curl -H "Content-Type: application/json" -X POST -d "{\"content\": \":white_check_mark: **MAJ GITLAB**\\n\\nMise à jour effectuée sur la version $LATEST_VERSION.\"}" "$DISCORD_WEBHOOK"
     else
         # On notifie que la version est encore trop récente de X jours
